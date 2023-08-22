@@ -5,7 +5,7 @@ In this Spring Boot application, the CloudFront signed URL generation functional
 
 
 ### Overview of AWS CloudFront Signed URL Generation
-[Overview of CloudFront Signed URLs](/readmeresources/overview_cf_signed_urls.png)
+![Overview of CloudFront Signed URLs](readmeresources/overview_cf_signed_urls.png)
 
 ## Documentation on AWS Resource provisioning
 
@@ -101,7 +101,7 @@ Additional details on configuring AWS CloudFront Distribution for singed URLs is
 
 ### Using 3rd party libraries to create CloudFront signed URLs
 As an [alternative approach](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CFPrivateDistJavaDevelopment.html), AWS CloudFront documentation has provided examples of using [JetS3t](http://www.jets3t.org/) library for signed URL generation. <br />
-[JetS3t_Library](/readmeresources/JetS3t_functions.png)
+![JetS3t_Library](readmeresources/JetS3t_AWS_docs.png)
 
 ### AWS Parameter Store integration
 
@@ -138,11 +138,14 @@ To integrate the spring boot application with AWS Parameter Store, [Spring Cloud
 
 ## Demo
 
-[Application_Startup](/readmeresources/demo_preview_1.gif)
+#### Application Startup:
+![Application_Startup](readmeresources/demo_preview_1.gif)
 
-[CloudFront_Signed_URL_Generation](/readmeresources/demo_preview_2.gif)
 
-## Reference
+#### CloudFront Signed URL generation:
+![CloudFront_Signed_URL_Generation](readmeresources/demo_preview_2.gif)
+
+## References
 [AWS Repost:Troubleshoot CloudFront signed URLs](https://repost.aws/knowledge-center/cloudfront-troubleshoot-signed-url-cookies)<br />
 [Spring Cloud AWS Github repo](https://github.com/awspring/spring-cloud-aws)<br />
 [Official Spring Documentation of Spring Cloud AWS](https://docs.awspring.io/spring-cloud-aws/docs/2.4.1/reference/html/index.html)<br />
