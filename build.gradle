@@ -1,0 +1,59 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.2'
+	id 'io.spring.dependency-management' version '1.1.2'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// we are using aws cloudfront and s3 sdk version 1 libraries in AWSS3ServiceSDKVersionOne implementation.
+	// because of that we get a warning that says "please remove commons-logging.jar from classpath in order to avoid potential conflicts"
+	// the exclusion of commons-logging module is added to avoid that warning
+	implementation ('com.amazonaws:aws-java-sdk-s3:1.12.521'){
+		exclude group:"commons-logging", module:"commons-logging"
+	}
+	implementation ('com.amazonaws:aws-java-sdk-cloudfront:1.12.522'){
+		exclude group:"commons-logging", module:"commons-logging"
+	}
+
+	// to integrate AWS parameter store to fetch params
+	implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.0.1")
+	runtimeOnly 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store'
+
+	// the AWSS3ServiceSDKVersionTwo implementation uses AWS Java SDK version 2
+	implementation 'software.amazon.awssdk:cloudfront:2.20.120'
+	implementation 'software.amazon.awssdk:s3:2.20.121'
+
+	// to perform file manipulation before uploading objects to S3
+	implementation 'commons-io:commons-io:2.13.0'
+
+	// to convert PEM encoded PKCS#1 private key file to DER encoded PKCS#8 private key file
+	implementation 'org.bouncycastle:bcpkix-jdk15on:1.70'
+
+	// as an alternative approach for CloudFront signed url generation
+	implementation ('net.java.dev.jets3t:jets3t:0.9.4'){
+		exclude group:"commons-logging", module:"commons-logging"
+	}
+
+	implementation 'org.springframework.boot:spring-boot-starter-logging:3.1.1'
+	// to suppress the error log line, "If you are using Java 9+, you will need to include javax.xml.bind:jaxb-api as a dependency."
+	implementation 'javax.xml.bind:jaxb-api:2.3.1'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
